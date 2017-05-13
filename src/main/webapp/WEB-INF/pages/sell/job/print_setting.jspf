@@ -1,0 +1,125 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<table border="0" id="setting" style="display:none">
+    	<tr>
+    	<td width="100"><label for="isShowSeat"><input type="checkbox" checked name="isShowSeat" id="isShowSeat"/>显示座位</label></td>
+    	<td width="80"><label for="hasTea"><input type="checkbox" checked name="hasTea" id="hasTea"/>含茶</label></td>
+    	<td width="100"><label for="priceShowType1"><input type="radio" checked name="priceShowType" id="priceShowType1" value="0209001"/>正常打印</label></td>
+    	<td width="100"><label for="priceShowType2"><input type="radio" name="priceShowType" id="priceShowType2" value="0209002"/>原价打印</label></td>
+    	<td width="80"><label for="priceShowType3"><input type="radio" name="priceShowType" id="priceShowType3" value="0209003"/>浮动打印</label></td>
+    	<td width="80"><input type="text" id="fudong" style="display:none;width:30px;height:10px"/></td>
+    	<td width="60" valign="top">赠送水果：</td>
+    	<td>
+    	<input type="text" name="giftNum" style="width:30px;height: 10px;" id="giftNum"/>份</td>
+    	</tr>
+    </table>
+
+    <SCRIPT type="text/javascript">
+    <!--
+    $(function() {
+        $.ajax({
+        	url:"${pageContext.request.contextPath}/public/tool/getCustomerArr.htmls",
+        	type:"POST",
+        	dataType:"json",
+        	success:function(ret){
+        		$("#customerName").autocomplete({
+        			minLength: 0,
+	      		    source: ret,
+	      		    select: function( event, ui ) {
+	      		    	$("#customerName").val(ui.item.name );
+	      		    	$("#customerId").val( ui.item.id );
+	      		        return false;
+	      		    }
+                });
+        	}
+        });
+        // 输入营销编号有提示
+    	$.ajax({
+    		url : "${pageContext.request.contextPath}/public/tool/getSalesmanArr.htmls",
+    		type : "POST",
+    		dataType : "json",
+    		success : function(ret) {
+    			$.each(ret, function(ind, data){
+    				data.label = data.value + ' ' + data.name;
+    			});
+    			$("#sallerCode").autocomplete({
+    				minLength : 0,
+    				source : ret,
+    				select : function(event, ui) {
+    					$("#sallerCode").val(ui.item.value);
+    					return false;
+    				}
+    			})
+    		}
+    	});
+
+      });
+    $(":input[name=priceShowType]").change(function(e){
+    		if($("#priceShowType3").is(":checked")){
+    			$('#fudong').show();
+    		}else{
+    			$('#fudong').hide();
+    		}
+    	});
+    $('#memberNo').keyup(function(e){
+  		  if(e.keyCode==13){
+			validMemberNo(e);
+		}
+    }).blur(function(e){
+    	validMemberNo(e);
+    });
+    function validMemberNo(e){
+    	if($('#memberNo').val()!=""){
+			$.ajax({
+    			url:g_path+'/public/tool/getSalesmanByMemberNo.htmls',
+    			data:{memberNo:$('#memberNo').val()},
+    			async:false,
+    			success:function(ret){
+    				if(ret.status!=1){
+    					layer.msg("无效卡号");
+    					$('#memberNo').val("");
+    					$('#memberMobile').val('').attr("readonly", false);
+    					$('#memberName').val('').attr("readonly", false);
+    					$('#memberId').val("");
+    					$('#sallerCode').val("").attr("disabled",false);
+    				}else{
+    					$('#sallerCode').val(ret.sallerCode).attr("disabled",true);
+    					$('#memberMobile').val(ret.memberMobile).attr("readonly", true);
+    					$('#memberName').val(ret.memberName).attr("readonly", true);
+    					$('#memberId').val(ret.memberId);
+    				}
+    			}
+    		})
+		} else {
+			$('#memberMobile').val('').attr("readonly", false);
+			$('#memberName').val('').attr("readonly", false);
+			$('#memberId').val("");
+			$('#sallerCode').val("").attr("disabled",false);
+		}
+		
+	}
+    $('#memberMobile').change(function(e){
+    	MemberDwr.getMemberInfoByMobile($('#memberMobile').val(), {
+    		callback: function(ret) {
+				$('#memberName').val(ret.name).attr("readonly", true);
+				$('#memberId').val(ret.id);
+    		},
+    		errorHandler: function(msg) {
+    			$('#memberName').attr("readonly", false);
+    			$('#memberId').val('');
+    		}
+    	});
+	});
+
+	$('#fudong').blur(function(e){
+		if($.trim(this.value).length>0){
+			var totalMoney = $('#itemTable td[name=totalMoney]').text();
+			var amount = $('#itemTable td[name=amount]').text();
+			if((amount+this.value)>totalMoney){
+				this.value = "";
+				alert("打印价格不能超出原价金额");
+			}
+		}
+	}).keypress(function(){return onlyDigit(event)});
+        //-->
+</SCRIPT>

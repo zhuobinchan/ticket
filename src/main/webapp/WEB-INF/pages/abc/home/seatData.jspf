@@ -1,0 +1,330 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<SCRIPT type="text/javascript">
+    <!--
+    var stagePosition = '${sessionScope.theater.stagePosition}';
+    var now = new Date();
+	var today = now.format("yyyy-MM-dd");
+    var areas = null;
+	var areaMap = null;
+	var areaNames = null;
+	
+	//将座位保存在变量中
+	function setBase(){
+		if(!areaNames){
+			areas = genMaps("from Area order by code");
+			areaMap = $.parseJSON('${areaMap}');
+			areaNames = _.keys(areaMap);
+		}
+	}
+ 	var setVar = function(id){
+		var list = areaMap[id];
+		var g = new Graph(list,id,ticketData);
+		window[id] = g.drawSeatGraph();
+	}
+ 	var setVars = function(){
+ 		for(var i=0;i<areaNames.length;i++){
+			var list = areaMap[areaNames[i]];
+			if(list.length>0){
+				var g = new Graph(list,areaNames[i],ticketData);
+				window[areaNames[i]] = g.drawSeatGraph();
+			}
+		}
+	}
+ 	
+	//绘座位图
+	var ticketData = null;
+	var getTickets = function(playDate,showNumberId){
+		$.ajax({
+			url:g_path + '/public/tool/getSeatStatusMap.htmls',
+			data:{playDate:playDate,showNumberId:1},
+			dataType:'json',
+			type:'POST',
+			async:false,
+			success:function(ret){
+				ticketData = ret;
+			}
+		})
+	}
+	getTickets(today,1);
+	function Graph(list,id,ticketData){
+		this.list = list;
+		this.id = id;
+		this.ticketData = ticketData;
+		this.seat2 = null;
+		this.ticket = null;
+		this.lockedSeatId;
+		this.pickedSeatId;
+		this.needTickets;
+		this.seatTable = "";
+		this.area = areas[list[0].areaId];
+		this.maxRow = 0;
+		this.minRow = 0;
+		this.maxCell = 0;
+		this.minCell = 0;
+		this.info = "";
+		this.title = "";
+		this.vs1Status;
+		this.vs2Status;
+		this.vt1Status;
+		this.vt2Status;
+	}
+	Graph.prototype.filterTickets = function(){
+		seat2 = this.seat2;
+		this.needTickets = _.filter(ticketData.tickets,function(obj){
+			return obj.status=='0203001'||obj.status=='0203002';
+		})
+		this.ticket = _.findWhere(this.needTickets,{seatId:seat2.id});
+		this.lockedSeatId = _.filter(ticketData.lockedSeatIds,function(num){
+			return num===seat2.id;
+		});
+		this.pickedSeatId = _.filter(ticketData.pickedSeatIds,function(num){
+			return num===seat2.id;
+		});
+	}
+	Graph.prototype.calcuRange = function(){
+		this.maxRow = _.max(this.list,function(seat){
+			return seat.rowNum;
+		});
+		this.maxCell = _.max(this.list,function(seat){
+			return seat.columnNum;
+		});
+		this.minRow = _.min(this.list,function(seat){
+			return seat.rowNum;
+		});
+		this.minCell = _.min(this.list,function(seat){
+			return seat.columnNum;
+		});
+	}
+	Graph.prototype.createClass = function(flag){
+		var className = this.area.code;
+		if(flag&&flag==4){
+			className += " enclose ";
+			if((this.seat2.id)=='3622'){
+				if(this.vs1Status||this.vs2Status){
+					if(this.vs1Status=='0203001'||this.vs2Status=='0203001'){
+						className += " disabledTd ";
+					}else if(this.vs1Status=='0203002'||this.vs2Status=='0203002'){
+						className += " disabledTd ";
+					}
+					//return className;
+				}
+			}
+			if(this.seat2.id==3657){//vt
+				if(this.vt1Status||this.vt2Status){
+					if(this.vt1Status=='0203001'||this.vt2Status=='0203001'){
+						className += " disabledTd ";
+					}else if(this.vt1Status=='0203002'||this.vt2Status=='0203002'){
+						className += " disabledTd ";
+					}
+					return className;
+				}
+			}
+			if(this.seat2.id==3631||this.seat2.id==3640){//判断VS是否被选择，3631vs1,3640vs2
+				var ticket3622 = _.findWhere(this.needTickets,{seatId:3622});
+				if(ticket3622&&ticket3622.status==='0203001'){
+					className += " disabledTd ";
+					return className;
+				}else if(ticket3622&&ticket3622.status==='0203002'){
+					className += " disabledTd ";
+				}
+			}
+			if(this.seat2.id==3675||this.seat2.id==3666){//判断VS是否被选择，3675vt1,3666vt2
+				var ticket3657 = _.findWhere(this.needTickets,{seatId:3657});
+				if(ticket3657&&ticket3657.status==='0203001'){
+					className += " disabledTd ";
+					return className;
+				}else if(ticket3657&&ticket3657.status==='0203002'){
+					className += " disabledTd ";
+				}
+			}
+		}
+		if(this.lockedSeatId!=''){
+			className += " locked ";
+		}
+		if(this.pickedSeatId!=''){
+			className += " picked ";
+		}
+		if(this.ticket){
+			if(this.ticket.status==='0203001'){
+				className += " saled ";
+				if(this.seat2.id===3640){
+					this.vs1Status = '0203001';
+				}
+			}else if(this.ticket.status==='0203002'){
+			
+				className += " reserved  ";
+				if(this.seat2.id===3640){
+					this.vs1Status = '0203002';
+				}
+				if(this.seat2.id===3631){
+					this.vs2Status = '0203002';
+				}
+				if(this.seat2.id===3675){
+					this.vt1Status = '0203002';
+				}
+				if(this.seat2.id===3666){
+					this.vt2Status = '0203002';
+				}
+			}
+		}
+		
+		return className;
+	}
+	Graph.prototype.drawSeatGraph = function() {
+		area = this.area;
+		list = this.list, id = this.id, ticketData = this.ticketData;
+		this.calcuRange();
+		var seatTable = "<table class='theatreTable' cellspacing='0' style='display: inline;margin: 0;padding: 0' cellpadding='0' border='0' width='100%'>";
+		var tr = null;
+		var td = null;
+		var maxRowNum = this.maxRow.rowNum;
+		var minRowNum = this.minRow.rowNum;
+		var end = maxRowNum,start = minRowNum;
+		if(stagePosition==='0302002'){
+			start = -maxRowNum;
+			end = -minRowNum;
+		} 
+		while (start<=end) {
+			i = Math.abs(start);
+			tr = "";
+			if (area.mark === 2) {
+				tr += "<td class='pai' width='40' align='center'>" + ((i < 10 ? "0" + i : i) + "排") + "</td>";
+			} else if (area.mark === 0) {
+				tr += "<td class='pai2' width='40' align='center'>" + ((i < 10 ? "0" + i : i)) + "</td>";
+			} else if (area.mark === 3) {
+				tr += "<td class='pai' width='40' align='center'>" + ((i < 10 ? "0" + i : i) + "排") + "</td>";
+			}
+			var maxCellNum = this.maxCell.columnNum;
+			var minCellNum = this.minCell.columnNum;
+			for (var j = maxCellNum; j >= minCellNum; j--) {
+
+				var seat2 = _.find(list, function(r) {
+					return r.rowNum == i && r.columnNum == j;// 根据x轴和y轴定位
+				});
+				this.seat2 = seat2;
+				tr += "<td align='center' ";
+				var flag = 1;
+				if (seat2.type === '0230001' && (seat2.mappedName === undefined || $.trim(seat2.mappedName) === "")) {
+					flag = 1;
+				} else {
+					if (seat2.type === '0230002' || (seat2.mappedName && seat2.mappedName.indexOf('隐藏') !== -1)) {
+						flag = 2;
+					} else if (seat2.type === '0230003'
+							|| (seat2.mappedName && (seat2.mappedName.indexOf('茶') !== -1 || seat2.mappedName
+									.indexOf('卡') !== -1))) {
+						flag = 3;
+					} else {
+						if (area.id === 17 || seat2.areaId === 18 || seat2.areaId === 1 || seat2.areaId === 3) {
+							flag = 4;
+						} else {
+							flag = 0;
+						}
+					}
+				}
+				var tdClass = '';
+				if (seat2.style) {
+					tdClass = ' ' + seat2.style;
+				}
+				if (flag <= 1 || flag == 4) {
+					this.filterTickets();
+					var className = this.createClass(flag);
+					var info = "", title = "";
+					var ticket = this.ticket;
+					if (flag == 4) {
+						tr += " kaName='" + seat2.mappedName + "'";
+					}
+					if (ticket) {
+						tr += " ticketId='" + ticket.id + "'";
+
+						if (this.ticket.status === '0203001') {
+							var thisr = _.find(ticketData.sales, function(v) {
+								return v.id == ticket.saleId;
+							});
+							if (thisr.sallerCode !== "" && thisr.sallerCode !== null && thisr.sallerCode !== 'null') {
+								info = thisr.sallerCode;
+							}
+							if (thisr.descs !== "" && thisr.descs !== null) {
+								info += " | " + thisr.descs;
+							}
+							if ($.trim(info) === "") {
+								info = "";
+							} else {
+								info = "【" + info + "】";
+							}
+							info += thisr.createUserName + "" + new Date(thisr.createTime).format("HH:mm:ss")
+							if (this.ticket.parentId) {// 改签的座位显示日期
+								var pobj = _.find(ticketData.tickets, function(v) {
+									return v.id == ticket.parentId;
+								});
+								title = new Date(pobj.createTime).format("yyyy-MM-dd");
+							}
+						} else if (this.ticket.status == '0203002') {
+
+							var thisr = _.find(ticketData.reserves, function(v) {
+								return v.id == ticket.reserveId;
+							});
+							if (thisr.reserveType == "0214002") {
+								info += "快速预订 | ";
+							}
+							if (thisr.sallerCode !== "" && thisr.sallerCode !== null) {
+								info = thisr.sallerCode + " | ";
+							}
+							if (thisr.descs !== "" && thisr.descs !== null) {
+								info += thisr.descs + " | ";
+							}
+							info += thisr.createUserName + " | " + new Date(thisr.createTime).format("HH:mm:ss");
+							tr += "reserveType='" + thisr.reserveType + "'";
+						}
+					}
+
+					if (info.length > 0) {
+						tr += " info='" + info + "'";
+					}
+					if (title.length > 0) {
+						tr += " title='" + title + "'";
+					}
+					tr += " class='" + className + tdClass + "'";
+					if(area.backgroundColor){
+						tr += " style='background-color:"+area.backgroundColor+"'";
+					}
+					// TD闭合
+					tr += " price='" + area.price + "' areaId='" + area.id + "' oid='" + seat2.id + "' title='"
+							+ seat2.name + "' text='" + seat2.name + "' columnNum='" + seat2.columnNum + "' areaName='"
+							+ area.name + "' width='40'>";
+					if (flag === 1) {
+						tr += seat2.columnNum;
+					} else {
+						tr += seat2.mappedName;
+					}
+				} else {
+					if (flag === 2) {
+						tr += " class='hideSeat' width='40'>&nbsp;";
+
+					} else if (flag === 3) {
+						tr += "class='teaDesk " + tdClass + "' width='40'>";
+						tr += seat2.mappedName;
+					}
+				}
+				className = null;
+				tr += "</td>";
+			}
+			if (area.mark === 1) {
+				tr += "<td class='pai' width='40' align='center'>" + ((i < 10 ? "0" + i : i) + "排") + "</td>";
+			} else if (area.mark === 3) {
+				tr += "<td class='pai' width='40' align='center'>" + ((i < 10 ? "0" + i : i) + "排") + "</td>"// + tr;
+			} else if (area.mark === 0) {
+				tr += "<td class='pai2' width='40' align='center'>" + ((i < 10 ? "0" + i : i)) + "</td>";
+			}
+			tr = "<tr height='25'>" + tr + "</tr>";
+			seatTable += tr;
+			start++;
+		}
+		seatTable += "</table>";
+		area = null;
+		td = null;
+		tr = null;
+		return seatTable;
+	}
+    //-->
+</SCRIPT>

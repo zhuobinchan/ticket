@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excels>
+	<excel id="ticketsale_stat">
+		<title>销售统计表</title>
+		<cols>
+			<col width="15" name="1">销售单号</col>
+			<col width="15" name="2">售票日期</col>
+			<col width="15" name="3">演出日期</col>
+			<col width="15" name="3">售票员</col>
+			<col width="15" name="4">支付方式</col>
+			<col width="15" name="5">门票策略</col>
+			<col width="15" name="7">售票数量</col>
+			<col width="15" name="8">用票数量</col>
+			<col width="10" name="9">每张立减</col>
+			<col width="13" name="10">原票抵扣</col>
+			<col width="14" name="11">折扣比例</col>
+			<col width="14" name="11">原价总额</col>
+			<col width="14" name="11">实收总额</col>
+			<col width="14" name="11">营销编号</col>
+			<col width="14" name="11">会员卡号</col>
+			<col width="14" name="11">打印方式</col>
+		</cols>
+	</excel>
+	<excel id="balance_stat">
+		<title>售票员结算统计</title>
+		<cols>
+			<col width="15" name="2">售票日期</col>
+			<col width="15" name="3">售票员</col>
+			<col width="15" name="4">现金</col>
+			<col width="15" name="5">信用卡</col>
+			<col width="15" name="7">会员卡</col>
+			<col width="15" name="8">挂账</col>
+			<col width="10" name="9">免单</col>
+			<col width="15" name="10">微信</col>
+			<col width="15" name="11">支付宝</col>
+			<col width="15" name="12">充值卡</col>
+			<col width="15" name="13">美团</col>
+			<col width="10" name="14">百度</col>
+			<col width="13" name="15">有效票</col>
+			<col width="14" name="16">原价数</col>
+			<col width="14" name="17">浮动数</col>
+			<col width="14" name="18">退票数</col>
+			<col width="14" name="19">换票数</col>
+			<col width="14" name="20">免票数</col>
+			<col width="14" name="21">最低票</col>
+			<col width="14" name="22">优惠票</col>
+			<col width="14" name="23">改签票</col>
+		</cols>
+	</excel>
+	<excel id="commision_stat">
+		<title>营销人员提成统计</title>
+		<cols>
+			<col width="15" name="2">营销号</col>
+			<col width="15" name="3">营销员</col>
+			<col width="15" name="4">服务部门</col>
+			<col width="15" name="5">工作单位</col>
+			<col width="15" name="7">操作员</col>
+			<col width="15" name="8">消费金额</col>
+			<col width="10" name="9">提成比例</col>
+			<col width="13" name="10">提成金额</col>
+			<col width="14" name="11">票数</col>
+		</cols>
+	</excel>
+	<excel id="salesman_commision">
+		<title>营销人员提成明细</title>
+		<cols>
+			<col width="16" name="0">销售单号</col>
+			<col width="15" name="1">销售日期</col>
+			<col width="15" name="2">营销号</col>
+			<col width="15" name="3">营销员</col>
+			<col width="15" name="4">服务部门</col>
+			<col width="15" name="5">工作单位</col>
+			<col width="15" name="6">预订场所</col>
+			<col width="15" name="7">操作员</col>
+			<col width="15" name="8">消费金额</col>
+			<col width="10" name="9">提成比例</col>
+			<col width="13" name="10">提成金额</col>
+			<col width="14" name="11">票数</col>
+		</cols>
+	</excel>
+	<excel id="member_commision_stat">
+		<title>会员卡营销人员提成统计</title>
+		<cols>
+			<col width="15" name="2">会员卡号</col>
+			<col width="15" name="2">营销号</col>
+			<col width="15" name="3">营销员</col>
+			<col width="15" name="4">服务部门</col>
+			<col width="15" name="5">工作单位</col>
+			<col width="15" name="7">操作员</col>
+			<col width="15" name="8">消费金额</col>
+			<col width="10" name="9">提成比例</col>
+			<col width="13" name="10">提成金额</col>
+			<col width="14" name="11">票数</col>
+		</cols>
+	</excel>
+	<excel id="member_commision">
+		<title>营销人员提成明细</title>
+		<cols>
+			<col width="16" name="0">销售单号</col>
+			<col width="15" name="1">销售日期</col>
+			<col width="15" name="2">会员卡号</col>
+			<col width="15" name="2">营销号</col>
+			<col width="15" name="3">营销员</col>
+			<col width="15" name="4">服务部门</col>
+			<col width="15" name="5">工作单位</col>
+			<col width="15" name="6">预订场所</col>
+			<col width="15" name="7">操作员</col>
+			<col width="15" name="8">消费金额</col>
+			<col width="10" name="9">提成比例</col>
+			<col width="13" name="10">提成金额</col>
+			<col width="14" name="11">票数</col>
+		</cols>
+	</excel>
+	<excel id="jobtest">
+		<title>考核打分明细表</title>
+		<cols>
+			<col width="15">标题</col>
+			<col width="15">指标名称</col>
+			<col width="10" orgId="1016">高压</col>
+			<col width="10" orgId="1020">系统</col>
+			<col width="10" orgId="1018">用电与计量</col>
+			<col width="10" orgId="1017">智能电网</col>
+			<col width="10" orgId="1023">轮机</col>
+			<col width="10" orgId="1021">锅炉</col>
+			<col width="10" orgId="1014">热工</col>
+			<col width="10" orgId="1005">化学</col>
+			<col width="15" orgId="1022">环保</col>
+			<col width="10" orgId="1019">金属</col>
+			<col width="10" orgId="2014">直流输电及新能源</col>
+			<col width="25">说明</col>
+		</cols>
+		<y>
+			<row rowspan="3">
+				<y1>常规任务（除加分项）完成情况</y1>
+				<y2>
+					<row>加权任务总数</row>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>集团以上任务(T1)系数为1.2，供电局、电厂任务(T2)系数为1,T0=（1.2×T1+1.0×T2）</row>
+					<row>常规任务（除加分项，包含受邀培训授课）</row>
+					<row>常规任务（除加分项，包含受邀培训授课）</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>出差工作量</y1>
+				<y2>
+					<row>月度总工作量</row>
+				</y2>
+				<y13>
+					<row>出差，除去加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>院内工作量</y1>
+				<y2>
+					<row>月度总工作量</row>
+				</y2>
+				<y13>
+					<row>出差，除去加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="80021908">重大紧急</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="80021906">重点工作</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="80021907">报告编制</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="800219069">编写标准</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="80020353">主办技术培训班</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="80020354">主办技术监督会议</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1 dic="80020352">专项技术交流研讨</y1>
+				<y2>
+					<row>月度任务总数</row>
+					<row>目前完成单数</row>
+				</y2>
+				<y13>
+					<row>加分项</row>
+					<row>加分项</row>
+				</y13>
+			</row>
+		</y>
+	</excel>
+	<excel id="director-job">
+		<title>专业专责工作单统计</title>
+		<cols>
+			<col width="25" name="monitorType">专业专责</col>
+			<col width="25" name="monitorSort">专业所</col>
+			<col width="25" name="monitorLevel">工作任务数</col>
+			<col width="25" name="workType">已完成数</col>
+		</cols>
+	</excel>
+	<excel id="produce-job">
+		<title>专业所生产评分表</title>
+		<cols>
+			<col width="7" name="monitorType">序号</col>
+			<col width="15" name="monitorSort">考核项目</col>
+			<col width="20" name="monitorLevel">指标名称</col>
+			<col width="15" name="workType">标准分</col>
+			<col width="10" orgId="1016">高压</col>
+			<col width="10" orgId="1020">系统</col>
+			<col width="10" orgId="1018">用电与计量</col>
+			<col width="10" orgId="1017">智能电网</col>
+			<col width="10" orgId="1023">轮机</col>
+			<col width="10" orgId="1021">锅炉</col>
+			<col width="10" orgId="1014">热工</col>
+			<col width="10" orgId="1005">化学</col>
+			<col width="15" orgId="1022">环保</col>
+			<col width="10" orgId="1019">金属</col>
+			<col width="10" orgId="2014">直流输电及新能源</col>
+			<col width="65">说明</col>
+		</cols>
+		<y>
+			<row rowspan="7">
+				<y1>生产、技术监督常规任务完成情况</y1>
+				<y13>
+					<row>集团以上任务(T1)系数为1.2，供电局、电厂任务(T2)系数为1,T0=（1.2×T1+1.0×T2）</row>
+					<row>手工录入</row>
+					<row>任务数量(T)＝技术监督常规任务总数(T)＋器材任务数(T)</row>
+					<row>系统生成</row>
+					<row>系统生成</row>
+					<row>公式计算</row>
+					<row>手工录入</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>专题文章</y1>
+				<y13>
+					<row>手工录入</row>
+				</y13>
+			</row>
+			<row rowspan="5">
+				<y1>生产、技术监督出差工作量</y1>
+				<y13>
+					<row>系统生成，已归档</row>
+					<row>手工录入</row>
+					<row>生产、技术监督出差工作量＝技术监督出差工作量＋器材出差工作量</row>
+					<row>系统生成</row>
+					<row>人均出差工作量=生产、技术监督出差工作量/专业所加权总人数</row>
+				</y13>
+			</row>
+			<row rowspan="4">
+				<y1>生产、技术监督室内工作量</y1>
+				<y13>
+					<row>系统生成，已归档</row>
+					<row>手工录入</row>
+					<row>生产、技术监督室内工作量＝技术监督非出差工作量＋器材非出差工作量</row>
+					<row>人均室内工作量=生产、技术监督室内工作量/专业所加权总人数</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>安全生产</y1>
+				<y13>
+					<row>手工录入</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>质量管理</y1>
+				<y13>
+					<row>手工录入</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>计量管理</y1>
+				<y13>
+					<row>手工录入</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>奖励</y1>
+				<y13>
+					<row>系统生成，已归档</row>
+					<row>系统生成，已归档</row>
+					<row>系统生成，已归档</row>
+					<row>系统生成，已归档</row>
+					<row>手工录入</row>
+					<row>手工录入</row>
+					<row>手工录入</row>
+					<row>系统生成，已归档</row>
+					<row>系统生成，已归档</row>
+					<row>手工录入</row>
+				</y13>
+			</row>
+			<row rowspan="1">
+				<y1>扣罚</y1>
+				<y13>
+					<row>手工录入</row>
+					<row>手工录入</row>
+				</y13>
+			</row>
+		</y>
+	</excel>
+	<excel id="devicestat">
+		<title>设备查询统计</title>
+		<cols>
+			<col width="7" name="orderno">序号</col>
+			<col width="19" name="sectionName">电厂名称</col>
+			<col width="18" name="equipName">机组名称</col>
+			<col width="14" name="capacity">容量（MW）</col>
+			<col width="13" name="tesionLevel">电压等级</col>
+			<col width="15" name="category">设备分类</col>
+			<col width="20" name="deviceName">设备名称</col>
+			<col width="20" name="itemName">项目</col>
+			<col width="20" name="numValue">数值（内容）</col>
+			<col width="16" name="unit">参数单位</col>
+			<col width="20" name="referStd">参考标准</col>
+		</cols>
+	</excel>
+</excels>

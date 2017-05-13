@@ -1,0 +1,49 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <div id="header">
+    <div class="topbox">
+    <div class="topb"><a href="#"><img src="${pageContext.request.contextPath }/static/images/b1.png" /></a></div>
+      <div class="tops">红太阳集团专用版<div id="topTheaterName">田汉大剧院</div></div>
+      <div class="nav">
+        <ul>
+      	 <c:forEach var="app" items="${apps }" varStatus="s">
+          <li><a href="#" id="${app.id}" title="${app.name }" class="b${app.imgPath }"></a>
+          <div style="line-height:14px" align="center" >${app.name }</div>
+          </li>
+         
+          </c:forEach>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="tnav">
+        <ul>
+          <li><a href="#" class="b2" title="刷新"></a></li>
+          <li><span class="b3" title="设置"></span></li>
+          <li><span class="b4" title=""></span></li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="trbox">
+        <div class="trboxt"></div>
+        <div class="trboxm">
+          <ul id="downbtn">
+            <li><a href="javascript:void(0)" class="b1">修改密码</a></li>
+            <li><a href="<c:url value="/logout"/>" class="b2">注销</a></li>
+            <li><a href="javascript:void(0)" class="b3">创建快捷方式</a></li>
+            <div class="my"><img src="static/images/b4.png" class="img" />当前用户：${userName}<br />花鼓剧团</div>
+            <div class="clear"></div>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+	// 显示剧院名称
+	var dic0104 = null;
+  	genDicJs([ '0104' ]);
+  	if (dic0104['0104001']) {
+  		$('#topTheaterName').html(dic0104['0104001'].text);
+  	}
+  </script>

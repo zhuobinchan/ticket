@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+<!-- 通用dwr配置 -->
+<dwr>
+    <allow>
+        <create javascript="DwrTool" creator="spring">
+            <param name="beanName" value="dwrTool"></param>
+        </create>
+        <create javascript="BaseDwr" creator="spring">
+            <param name="beanName" value="baseDwr"></param>
+        </create>
+        <create javascript="MemberDwr" creator="spring">
+            <param name="beanName" value="memberDwr"></param>
+        </create>
+        <create javascript="VenueDwr" creator="spring">
+            <param name="beanName" value="venueDwr"></param>
+        </create>
+        <convert converter="exception" match="java.lang.Exception"> 
+  			<param name='include' value='message,lineNumber'/> 
+		</convert> 
+		<create creator="new" javascript="MessagePush">
+      		<param name="class" value="com.tjing.bussiness.support.MessagePush"/>
+    	</create>
+        <convert match="com.tjing.frame.object.TreeData" converter="bean"/>
+        <convert match="com.tjing.bussiness.model.Area" converter="bean"/>
+        <convert match="com.tjing.bussiness.model.Seat" converter="bean"/>
+        <convert match="com.tjing.bussiness.object.PrintInfo" converter="bean"/>
+        <convert match="com.tjing.bussiness.object.SaleReturn" converter="bean"/>
+    </allow>
+</dwr>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<defaultCache
+        maxElementsInMemory="1000"
+        eternal="true"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="3600"
+        overflowToDisk="true"
+        />
+  <cache name="DEFAULT_CACHE"
+        maxElementsInMemory="10000"
+        eternal="true"
+        timeToIdleSeconds="300000"
+        timeToLiveSeconds="600000"
+        overflowToDisk="true"
+        />
+<!--    <cache name="shiro-activeSessionCache"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="600"
+           timeToIdleSeconds="0"
+           statistics="true"/> -->
+</ehcache>

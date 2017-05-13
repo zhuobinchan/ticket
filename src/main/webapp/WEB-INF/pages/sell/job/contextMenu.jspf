@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ul id="menu" class="jeegoocontext cm_default">
+        <li name="saled" id="saled" class="icon"><span class="icon file"></span><span name='text'></span></li>
+        <li name="saled" id="gaiqian" class="icon"><span class="icon disk"></span><span name='text'></span></li>
+        <li name="saled" id="gaiqianall" class="icon"><span class="icon file"></span><span name='text'></span></li>
+        <li id="salereserved" class="icon"><span class="icon file"></span><span name='text'></span></li>
+        <li id="clearSelected" class="icon"><span class="icon file"></span>清空选择</li>
+        <li id="clearLocked" class="icon"><span class="icon disk"></span>全部解锁</li>
+        <li id="quickreserve" class="icon"><span class="icon file"></span>快速预订</li>
+        <li id="reserve" class="icon"><span class="icon drive"></span>预订</li>
+        <li id="sale" class="icon"><span class="icon ok"></span>售票</li>
+        <li id="changeSeat" class="icon"><span class="icon drive"></span>更换座位</li>
+        <li id="info" class="icon"><span class="icon drive"></span><label></label></li>
+        <li class="separator"></li>
+        <li id="selectAll" class="icon"><span class="icon file"></span><label>打开指示灯</label></li>
+        <li id="refrushPage" class="icon"><span class="icon file"></span>刷新本页</li>
+        <li id="quit" class="icon"><span class="icon disk"></span>退出菜单</li>
+    </ul> 
+<script type="text/javascript" src="<%=path %>/static/jeegoocontext/jquery.jeegoocontext-2.0.0.min.js"></script>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>accj</shortname>
+	<tag>
+		<description>在售票台面的顶部输出楼层，演出日期等信息</description>
+		<name>theaterTopDesc</name>
+		<tagclass>
+			com.tjing.bussiness.tag.CreateTheaterTopDesc
+		</tagclass>	
+		<attribute>
+	        <name>showInput</name>
+	        <required>false</required>
+	        <rtexprvalue>false</rtexprvalue>
+    	</attribute>
+	</tag>
+	<tag>
+		<description>日期选择框和场次，默认当前日期</description>
+		<name>createPlayTime</name>
+		<tagclass>
+			com.tjing.bussiness.tag.CreatePlayTime
+		</tagclass>	
+	</tag>
+
+</taglib>
+

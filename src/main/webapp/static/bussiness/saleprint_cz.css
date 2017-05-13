@@ -1,0 +1,157 @@
+.section, .topInfo {
+	margin: 0 auto;
+}
+
+a {
+	text-decoration: none;
+	color: #585757;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #3caddf;
+}
+
+#K1 td {
+	color: #000;
+	background-color: #836FFF;
+}
+
+#J1 td {
+	color: #000;
+	background-color: #8DEEEE;
+}
+
+#H1 td {
+	color: #000;
+	background-color: #C6E2FF;
+}
+
+#H2 td {
+	color: #000;
+	background-color: #C6E2FF;
+}
+
+#V1 td {
+	background-color: #00BFFF;
+}
+
+#V2 td {
+	background-color: #00BFFF;
+}
+
+#V3 td {
+	background-color: #3CB371;
+}
+
+#D1 td, #D2 td {
+	background-color: #00BFFF;
+}
+
+td[class^='A'] {
+	background-color: #CAFF70;
+}
+
+td[class^='B'] {
+	background-color: #48D1CC;
+}
+
+td[class^='C'] {
+	background-color: #00FA9A;
+}
+
+td[class^='D'] {
+	background-color: #00BFFF;
+}
+
+td[class^='E'] {
+	background-color: #CAFF70;
+}
+
+td[class^='F'] {
+	background-color: #00FFFF;
+}
+
+td[class^='G'] {
+	background-color: #00BFFF;
+}
+
+td[class^='H'] {
+	background-color: #CAFF70;
+}
+
+td[class^='I'] {
+	background-color: #00FFFF;
+}
+
+.enclose {
+	
+}
+
+span.encloseTitle {
+	font-size: 17px !important;
+	color: #FFAE36 !important;
+	font-weight: bold;
+}
+
+TD.pai { /* 排号 */
+	background-color: #E0EEE0 !important;
+	color: red !important;
+	font-size: 10px
+}
+
+.btn, .btn-primary {
+	background-image: none;
+}
+
+.btn {
+	box-shadow: none;
+}
+
+.btn:last-child {
+	border-radius: 0px;
+	padding: 6px 5px 2px;
+}
+
+/* 左上角圆形 */
+td.top_left_circle {
+	border-top-left-radius: 25px;
+	text-align: right;
+}
+
+/* 右上角圆形 */
+td.top_right_circle {
+	border-top-right-radius: 25px;
+	text-align: left;
+	text-indent: 2px;
+}
+
+/* 左下角圆形 */
+td.bottom_left_circle {
+	border-bottom-left-radius: 25px;
+	text-align: right;
+}
+
+/* 右下角圆形 */
+td.bottom_right_circle {
+	border-bottom-right-radius: 25px;
+	text-align: left;
+	text-indent: 2px;
+}
+
+/* 沙发卡座左端 */
+td.sofa_left {
+	border-top-left-radius: 10px;
+	border-top: 1px solid #000000;
+}
+
+/* 沙发卡座右端 */
+td.sofa_right {
+	border-top-right-radius: 10px;
+	border-top: 1px solid #000000;
+}
+
+/* 沙发卡座靠背 */
+td.sofa_back {
+	border-top: 1px solid #000000;
+}

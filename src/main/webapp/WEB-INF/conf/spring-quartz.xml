@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+   http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-autowire="byName" default-lazy-init="false">
+	<!-- 启动触发器的配置开始 -->
+<!-- 	<bean name="startQuertz" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="myJobTrigger" />
+			</list>
+		</property>
+	</bean>
+	启动触发器的配置结束
+
+	调度的配置开始
+	quartz-2.x的配置
+	<bean id="myJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="myJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0/30 * * * * ?</value>
+		</property>
+	</bean>
+	调度的配置结束
+
+	job的配置开始
+	<bean id="myJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="myJob" />
+		</property>
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	job的配置结束
+	工作的bean
+	<bean id="myJob" class="com.tjing.group.client.services.InterfaceJob">
+		<property name="b2bConsumeUrl">
+			<value>http://localhost:8080/mgr/public/venuestat/querySalesStat.htmls
+			</value>
+		</property>
+		<property name="machingNo">
+			<value>TS10001</value>
+		</property>
+		<property name="appId">
+			<value>msrmuseum.com</value>
+		</property>
+		<property name="serectKey">
+			<value>9bc8aa75-ea70-40c6-b4d5-d58c31909faf</value>
+		</property>
+	</bean>
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/x-www-form-urlencoded;charset=UTF-8</value>
+							<value>multipart/form-data;charset=UTF-8</value>
+							<value>text/plain;charset=UTF-8</value>
+							<value>application/xml;charset=UTF-8</value>
+						</list>
+					</property>
+					<property name="partConverters">
+						<list>
+							<bean
+								class="org.springframework.http.converter.StringHttpMessageConverter">
+								<property name="supportedMediaTypes">
+									<list>
+										<value>text/html;charset=UTF-8</value>
+										<value>text/plain;charset=UTF-8</value>
+										<value>multipart/form-data;charset=UTF-8</value>
+										<value>application/xml;charset=UTF-8</value>
+									</list>
+								</property>
+							</bean>
+							<bean
+								class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+							<bean
+								class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+							<bean
+								class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+							<bean
+								class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+							<bean
+								class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+						</list>
+					</property>
+				</bean>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<value>text/plain;charset=UTF-8</value>
+							<value>multipart/form-data;charset=UTF-8</value>
+							<value>application/xml;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean> -->
+</beans>

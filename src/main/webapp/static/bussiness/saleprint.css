@@ -1,0 +1,112 @@
+.section,.topInfo{
+	margin: 0 auto;
+}
+a {
+    text-decoration: none;
+    color: #585757;
+}
+a:hover {
+    text-decoration: none;
+    color:#3caddf;
+}
+
+#K1 td,#K2 TD,#K3 TD{
+	color:#000;background-color: #836FFF;
+}
+#J1 td{
+	color:#000;background-color: #8DEEEE;
+}
+td.H1{
+	color:#000;background-color: #C6E2FF;
+}
+td.H2{
+	color:#000;background-color: #C6E2FF;
+}
+td.H3{
+	color:#000;background-color: #C6E2FF;
+}
+#V1 td{
+	background-color: #00BFFF;
+}
+#V2 td{
+	background-color: #00BFFF;
+}
+#V3 td{
+	background-color: #3CB371;
+}
+#D1 td,#D2 td{
+	background-color: #00BFFF;
+}
+#A1 td,#A3 td{
+	background-color: #CAFF70;
+}
+#A2 td{
+	background-color: #C0FF3E;
+}
+td.B1,td.B3{
+	background-color: #48D1CC;
+}
+td.B2{
+	background-color: #48D1CC;
+}
+td.B4 {
+	background-color: #7CFC00;
+}
+td.C1,td.C3{
+	background-color: #00FA9A;
+}
+td.C2{
+	background-color: #00FA9A;
+}
+#E1 td{
+	background-color: #CAFF70;
+}
+#F1 td,#F2 td,#F3 td{
+	background-color: #00FFFF;
+}
+#G1 td{
+	background-color: #EEC900;
+}
+#I1 td,#I2 td{
+	background-color: #EEC900;
+}
+#L1 td{
+	background-color: #EEC900;
+}
+.enclose{
+	
+}
+
+
+#Q01 td,#Q02 td,#Q03 TD{
+	background-color: #00BFFF;
+}
+#T01 td,#T02 td{
+	background-color: #CAFF70;
+}
+td.Q01{
+	background-color: #48D1CC;
+}
+td.G01{
+	background-color: #EEC900;
+}
+td.J01{
+	background-color: #00FFFF;
+}
+td.Y02,TD.Y04,TD.Y01,TD.Y03{
+	background-color: #00FA9A;
+}
+span.encloseTitle{
+	font-size: 17px!important;
+	color: #FFAE36!important;
+	font-weight: bold;
+}
+TD.pai{/* 排号 */
+	background-color: #E0EEE0!important;color: red!important;font-size: 10px
+}
+.btn, .btn-primary{background-image:none;}
+.btn{box-shadow:none;}
+.btn:last-child {
+	border-radius:0px;
+	padding:6px 5px 2px;
+}

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+	default-lazy-init="true">
+	<description>Shiro安全配置</description>
+	<bean id="mySessionListener" class="com.tjing.web.listener.MySessionListener" />
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 超时时间 -->
+		<property name="globalSessionTimeout" value="36000000"/>
+		<!-- session存储的实现 -->
+		<property name="sessionDAO" ref="shiroSessionDao"/>
+		<!-- sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+		<property name="sessionIdCookie" ref="sharesession"/>
+		<!-- 定时检查失效的session -->
+		<property name="sessionValidationSchedulerEnabled" value="true" />
+		<property name ="sessionListeners">  
+        <list>  
+          <ref bean="mySessionListener"/>  
+        </list>  
+     </property>
+	</bean>
+	<!-- 用户授权信息Cache, 采用EhCache -->
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+	</bean>
+	
+	<!-- Shiro's main business-tier object for web-enabled applications -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="defaultShiroRealm" />
+		<property name="cacheManager" ref="shiroEhcacheManager" />
+		<property name="sessionManager" ref="sessionManager" />
+	</bean>
+	<!-- sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+	<bean id="sharesession" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- cookie的name,对应的默认是 JSESSIONID -->
+		<constructor-arg name="name" value="SHAREJSESSIONID"/>
+	</bean>
+	<bean id="shiroSessionDao" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO" />
+	
+	<!-- 缓存管理实现 -->
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+		<!-- shiro的主过滤器,beanId 和web.xml中配置的filter name需要保持一致 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" depends-on="frameperms">
+		<!-- 安全管理器 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 默认的登陆访问url -->
+		<property name="loginUrl" value="/index.htmls" />
+		<!-- 登陆成功后跳转的url -->
+		<property name="successUrl" value="/index" />
+		<!-- 没有权限跳转的url -->
+		<property name="unauthorizedUrl" value="/unauth" />
+		<!-- 访问地址的过滤规则,从上至下的优先级,如果有匹配的规则,就会返回,不会再进行匹配 -->
+		<property name="filterChainDefinitions">
+			<value>
+			/static/** = anon
+			/start.jsp = anon
+			/empda.htmls = anon
+			/public/captcha = anon
+			/outside/** = anon
+			/public/** = user
+			/dwr/** = user
+			/index.htmls = anon
+			/loginpda.htmls = anon
+			/em.htmls = anon
+			/unauth = anon
+			/logout = logout
+			/** = user,frameperms
+			</value>
+		</property>
+	<!-- 声明自定义的过滤器 -->
+	<property name="filters">
+	<map>
+	<entry key="frameperms" value-ref="frameperms"></entry>
+	</map>
+	</property>
+	</bean>
+
+	
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

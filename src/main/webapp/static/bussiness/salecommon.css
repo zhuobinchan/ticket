@@ -1,0 +1,82 @@
+
+.reverseTxt{
+        height: 30px;
+        transform:rotate(180deg);
+        -ms-transform:rotate(180deg); /* Internet Explorer 9*/
+        -moz-transform:rotate(180deg); /* Firefox */
+        -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+        -o-transform:rotate(180deg); /* Opera */
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2); 
+}
+.danceTitle{
+	color:red;font-weight: 华文彩云;font-size: 60px;text-align: center
+}
+.btn6 { display:inline-block; background:#b9b9b9 !important; width:64px; height:24px !important; padding:0px !important; margin-left:3px; text-align:center; line-height:23px !important; border:none !important; font-size:12px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn6:hover { background:#39b1d6 !important; color:#fff !important;}
+.btn7 { display:inline-block; background:#39b1d6 !important; width:64px; height:24px !important; padding:0px !important; margin-left:3px; text-align:center; line-height:23px !important; border:none !important; font-size:12px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn7:hover { background:#279dc1 !important; color:#fff !important;}
+
+.btn1 { display:inline-block; background:#a7a7a7 !important; width:78px; height:25px !important; padding:0px !important; margin-left:3px; text-align:center; line-height:23px !important; border:none !important; font-size:14px; color:#393939 !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn1:hover { background:#0188cc !important; color:#fff !important;}
+.btn2 { display:inline-block; background:#0188cc !important; width:78px; height:25px !important; padding:0px !important; margin-left:3px; text-align:center; line-height:23px !important; border:none !important; font-size:14px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn2:hover { background:#0170a8 !important; color:#fff !important;}
+.btn3 { display:inline-block; background:#ffba00 !important; width:111px; height:37px !important; padding:0px !important; margin-left:23px; text-align:center; line-height:36px !important; border:none !important; font-size:16px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn3:hover { background:#e1a502 !important; color:#fff !important;}
+.btn4 { display:inline-block; background:#636363 !important; width:111px; height:37px !important; padding:0px !important; margin-left:23px; text-align:center; line-height:36px !important; border:none !important; font-size:16px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn4:hover { background:#ffba00 !important; color:#fff !important;}
+.btn5 { display:inline-block; background:#0188cc !important; width:135px; height:37px !important; padding:0px !important; margin-left:16px; text-align:center; line-height:36px !important; border:none !important; font-size:16px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn5:hover { background:#0272ab !important; color:#fff !important;}
+.btn8 { display:inline-block; background:#b9b9b9 !important; padding:0px 25px !important; height:24px !important; margin-left:3px; text-align:center; line-height:23px !important; border:none !important; font-size:12px; color:#fff !important; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; cursor:pointer;}
+.btn8:hover { background:#39b1d6 !important; color:#fff !important;}
+
+.selectAll{
+	background-color: yellow!important;color:green!important;
+}
+td.toggle{/* 选择变色 */
+	color:#F4F4F4!important;font-style:normal;background-color: green!important;
+}
+td.picked{
+	color:#FFF!important;
+	font-style:italic!important;
+	background-color: #ADADAD!important;
+}
+td.textCursor{
+	cursor: text!important;
+}
+.saled{
+	background-color: red!important;;
+	color: #FFF!important;
+	font-style:normal!important;
+}
+.hideSeat{
+	background-color: #000!important;
+}
+td.teaDesk{
+	color:#fff!important;
+	background-color: #7E4B2C!important;
+}
+.reserved{
+	background-color: blue!important;
+	color:#FFF!important;
+	cursor: pointer!important;
+}
+.locked{/* 别人锁定了 */
+	background-color: #E0E0E0!important;
+	color:#FFF!important;
+}
+.overtd{
+	background-color: #757575!important;
+}
+.disabledTd{
+	background-color: gray!important;
+}
+
+TD.pai{/* 排号 */
+	background-color: #548B54!important;color: #fff!important;font-size: 11px
+}
+TD.pai2{/* 排号 */
+	background-color: #000!important;color: red!important;font-size: 11px
+}
+
+.theatreTable {border-spacing: 1px;margin: 0;}
+.theatreTable td{color:#DC143C; font-size:13px;font-weight: normal;}
